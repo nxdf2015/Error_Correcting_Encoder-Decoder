@@ -1,25 +1,23 @@
 package correcter;
 
-import java.util.Random;
-import java.util.Scanner;
+
+
+import java.io.IOException;
+
 
 public class Main {
 
     public static void main(String[] args) {
+        FileEncoder encoder = new FileEncoder();
+        System.out.println("---------------"+System.getProperty("user.dir"));
+        try {
+            encoder.readBytes("send.txt");
 
+            encoder.code();
+            encoder.saveBytes("received.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        Scanner scanner = new Scanner(System.in);
-
-        String line = scanner.nextLine();
-        System.out.println(line);
-
-        String message = Encoder.triple(line);
-        System.out.println(message);
-
-        message = Encoder.noise(message);
-        System.out.println(message);
-
-        message = Encoder.decode(message);
-        System.out.println(message);
     }
 }
